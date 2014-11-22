@@ -1,0 +1,28 @@
+dependencies: \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/external/Box2D/Dynamics/Contacts/b2Contact.cpp \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/Contacts/b2Contact.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Common/b2Math.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Common/b2Settings.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Collision/b2Collision.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Collision/Shapes/b2Shape.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Common/b2BlockAllocator.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/b2Fixture.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/b2Body.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/Contacts/b2CircleContact.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/Contacts/b2PolygonContact.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/Contacts/b2ContactSolver.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/b2TimeStep.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Collision/b2TimeOfImpact.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Collision/b2Distance.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/b2World.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Common/b2StackAllocator.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/b2ContactManager.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Collision/b2BroadPhase.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Collision/b2DynamicTree.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Common/b2GrowableStack.h \
+  /Users/guo_chunyi/Documents/guochunyi/my_project/MyGame/cocos2d/build/../external/Box2D/Dynamics/b2WorldCallbacks.h
