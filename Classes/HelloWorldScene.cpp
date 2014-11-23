@@ -1,6 +1,15 @@
+#include "DishSprite.h"
+
 #include "HelloWorldScene.h"
 
 USING_NS_CC;
+
+HelloWorld* HelloWorld::_singleton = NULL;
+
+HelloWorld* HelloWorld::getInstance()
+{
+    return _singleton;
+}
 
 Scene* HelloWorld::createScene()
 {
@@ -9,6 +18,8 @@ Scene* HelloWorld::createScene()
     
     // 'layer' is an autorelease object
     auto layer = HelloWorld::create();
+    
+    _singleton = layer;
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -30,6 +41,8 @@ bool HelloWorld::init()
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
+    
+    this->schedule(schedule_selector(HelloWorld::createDish), 1);
 
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
@@ -52,15 +65,8 @@ bool HelloWorld::init()
     auto backgroundImage = Sprite::create("c_19.png");
     backgroundImage->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
     backgroundImage->setScale(1.34, 1.2);
-    this->addChild(backgroundImage, 0);
-    
-    //generate 皿
-    auto dish = Sprite::create("c_01.png");
-    dish->setPosition(Point(visibleSize.width + dish->getContentSize().width/2, visibleSize.height * 0.2));
-    this->addChild(dish,0);
-    auto move = MoveBy::create(5, Point(-visibleSize.width - dish->getContentSize().width, 0));
-    auto upmove = MoveBy::create(5, Point(-visibleSize.width - dish->getContentSize().width, 0));
-    dish->runAction(move);
+    this->addChild(backgroundImage, kZOrderBackground);
+
     return true;
 }
 
@@ -77,4 +83,21 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+void HelloWorld::createDish(float delta)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+
+    auto dish = Dish::create();
+    dish->setPosition(Point(visibleSize.width + dish->getContentSize().width/2, visibleSize.height * 0.2));
+    this->addChild(dish, kZOrderDish);
+}
+
+void HelloWorld::endGame()
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    auto endTest = Sprite::create("c_21.png");
+    endTest->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
+    this->addChild(endTest, 200000);
 }

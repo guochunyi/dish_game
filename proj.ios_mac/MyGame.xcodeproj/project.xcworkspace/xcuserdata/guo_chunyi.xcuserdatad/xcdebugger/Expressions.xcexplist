@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Dish::update(float):DishSprite.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "this-&gt;getPosition()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Dish::handleDish():DishSprite.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "Director::getInstance()-&gt;getWinSize().height * 0.9">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

@@ -15,8 +15,25 @@ public:
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     
+    void createDish(float delta);
+    
+    void endGame();
+    
+    static HelloWorld* getInstance();
+    
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+    
+private:
+    enum kZOrder
+    {
+        kZOrderBackground = 0,
+        kZOrderDish,
+        kZOrderMenu,
+    };
+    
+    static HelloWorld* _singleton;
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__
