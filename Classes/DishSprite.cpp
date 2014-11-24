@@ -36,7 +36,7 @@ void Dish::update(float delta)
 
 void Dish::handleDish()
 {
-    // TODO: 碟子的位置判断
+    // TODO: 位置を判断する
     Point point = this->getPosition();
     this->setAnchorPoint(Point(1, 0));
     if(point.x < -20 || point.x > Director::getInstance()->getWinSize().width + 50)

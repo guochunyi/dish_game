@@ -97,7 +97,16 @@ void HelloWorld::createDish(float delta)
 void HelloWorld::endGame()
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    auto endTest = Sprite::create("c_21.png");
-    endTest->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
-    this->addChild(endTest, 200000);
+    if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    {
+        auto endTest = Sprite::create("c_21.png");
+        endTest->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
+        this->addChild(endTest, 200000);
+    }
+    else
+    {
+        auto endTest = Sprite::create("img/c_21.png");
+        endTest->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
+        this->addChild(endTest, 200000);
+    }
 }
