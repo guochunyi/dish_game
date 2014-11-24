@@ -1,26 +1,16 @@
-#include "DishSprite.h"
-
-#include "HelloWorldScene.h"
-
+#include "GameLayer.h"
+#include "Dish.h"
+#include "Food.h"
 USING_NS_CC;
 
-HelloWorld* HelloWorld::_singleton = NULL;
-
-HelloWorld* HelloWorld::getInstance()
-{
-    return _singleton;
-}
-
-Scene* HelloWorld::createScene()
+Scene* GameLayer::createScene()
 {
     // 'scene' is an autorelease object
     auto scene = Scene::create();
     
     // 'layer' is an autorelease object
-    auto layer = HelloWorld::create();
+    auto layer = GameLayer::create();
     
-    _singleton = layer;
-
     // add layer as a child to scene
     scene->addChild(layer);
 
@@ -29,7 +19,7 @@ Scene* HelloWorld::createScene()
 }
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init()
+bool GameLayer::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -42,7 +32,7 @@ bool HelloWorld::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
     
-    this->schedule(schedule_selector(HelloWorld::createDish), 1);
+    this->schedule(schedule_selector(GameLayer::createDish), 1);
 
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
@@ -52,7 +42,7 @@ bool HelloWorld::init()
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+                                           CC_CALLBACK_1(GameLayer::menuCloseCallback, this));
     
 	closeItem->setPosition(Point(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
                                 origin.y + closeItem->getContentSize().height/2));
@@ -67,11 +57,22 @@ bool HelloWorld::init()
     backgroundImage->setScale(1.34, 1.2);
     this->addChild(backgroundImage, kZOrderBackground);
 
+	auto listener = EventListenerTouchOneByOne::create();
+	static int nextFood = 0;
+	listener->onTouchBegan = [this](Touch *touch, Event *event) {
+		Vec2 location = touch->getLocation();
+		Food* food = Create<Food>((FoodType)((++nextFood)&1));
+		food->setPosition(Vec2(location.x, 960));
+		this->addChild(food);
+		return true;
+	};
+
+	this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
 }
 
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void GameLayer::menuCloseCallback(Ref* pSender)
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
 	MessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
@@ -85,16 +86,17 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 #endif
 }
 
-void HelloWorld::createDish(float delta)
+void GameLayer::createDish(float delta)
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
-    auto dish = Dish::create();
+    auto dish = Create<Dish>();
     dish->setPosition(Point(visibleSize.width + dish->getContentSize().width/2, visibleSize.height * 0.2));
     this->addChild(dish, kZOrderDish);
+	dishList.push_front(dish);
 }
 
-void HelloWorld::endGame()
+void GameLayer::endGame()
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     auto endTest = Sprite::create("c_21.png");
