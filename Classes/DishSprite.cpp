@@ -22,7 +22,7 @@ bool Dish::init()
         
     }
 
-    mSpeed = Point(-10.f, 0.f);
+    mSpeed = Point(-300.f, 0.f);
     this->scheduleUpdate();
     
     return true;
@@ -31,7 +31,7 @@ bool Dish::init()
 void Dish::update(float delta)
 {
     handleDish();
-    this->setPosition(this->getPosition() + mSpeed);
+    this->setPosition(this->getPosition() + mSpeed * delta);
 }
 
 void Dish::handleDish()
@@ -39,7 +39,7 @@ void Dish::handleDish()
     // TODO: 位置を判断する
     Point point = this->getPosition();
     this->setAnchorPoint(Point(1, 0));
-    if(point.x < -20 || point.x > Director::getInstance()->getWinSize().width + 50)
+    if(point.x < -20 || point.x > Director::getInstance()->getWinSize().width + 100)
     {
         this->setPosition(this->getPosition() + Point(0.f, 80.0f));
         if(point.y > Director::getInstance()->getWinSize().height * 0.65)
