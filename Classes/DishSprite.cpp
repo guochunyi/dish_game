@@ -42,7 +42,7 @@ void Dish::handleDish()
     if(point.x < -20 || point.x > Director::getInstance()->getWinSize().width + 50)
     {
         this->setPosition(this->getPosition() + Point(0.f, 80.0f));
-        if(point.y > Director::getInstance()->getWinSize().height * 0.7)
+        if(point.y > Director::getInstance()->getWinSize().height * 0.65)
         {
             HelloWorld::getInstance()->endGame();
         };

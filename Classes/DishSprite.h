@@ -17,10 +17,8 @@ class Dish : public cocos2d::Sprite
 public:
     //init
     virtual bool init();
-    //
-    void locations(float location_x, float location_y);
-    void moveAction();
     
+    //dish handle method
     void handleDish();
     void update(float delta);
     

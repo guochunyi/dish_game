@@ -62,6 +62,7 @@
 		50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF629517ECD46A001EB2F8 /* Icon-100.png */; };
 		50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A017ECD613001EB2F8 /* Icon-29.png */; };
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
+		6979889E1A21719400AC48FC /* FoodSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6979889C1A21719400AC48FC /* FoodSprite.cpp */; };
 		6991CA6B1A1E1D9700D0771D /* boundsTestFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 6991CA4D1A1E1D9700D0771D /* boundsTestFont.fnt */; };
 		6991CA6C1A1E1D9700D0771D /* boundsTestFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 6991CA4E1A1E1D9700D0771D /* boundsTestFont.png */; };
 		6991CA6D1A1E1D9700D0771D /* Marker Felt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6991CA4F1A1E1D9700D0771D /* Marker Felt.ttf */; };
@@ -290,6 +291,8 @@
 		50EF629517ECD46A001EB2F8 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		50EF62A017ECD613001EB2F8 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		50EF62A117ECD613001EB2F8 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
+		6979889C1A21719400AC48FC /* FoodSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FoodSprite.cpp; path = ../Classes/FoodSprite.cpp; sourceTree = "<group>"; };
+		6979889D1A21719400AC48FC /* FoodSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodSprite.h; path = ../Classes/FoodSprite.h; sourceTree = "<group>"; };
 		6991CA4D1A1E1D9700D0771D /* boundsTestFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boundsTestFont.fnt; sourceTree = "<group>"; };
 		6991CA4E1A1E1D9700D0771D /* boundsTestFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boundsTestFont.png; sourceTree = "<group>"; };
 		6991CA4F1A1E1D9700D0771D /* Marker Felt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marker Felt.ttf"; sourceTree = "<group>"; };
@@ -403,6 +406,8 @@
 				1AFAF8B616D35DE700DB1158 /* HelloWorldScene.h */,
 				6996CF841A2087C200810BAB /* DishSprite.cpp */,
 				6996CF851A2087C200810BAB /* DishSprite.h */,
+				6979889C1A21719400AC48FC /* FoodSprite.cpp */,
+				6979889D1A21719400AC48FC /* FoodSprite.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -805,6 +810,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6996CF861A2087C200810BAB /* DishSprite.cpp in Sources */,
+				6979889E1A21719400AC48FC /* FoodSprite.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
