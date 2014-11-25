@@ -1,0 +1,7 @@
+.DS_Store
+cocos2d/
+proj.wp8-xaml/
+bin/
+proj.win32/
+proj.ios_mac/
+proj.android/

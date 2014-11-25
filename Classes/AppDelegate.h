@@ -35,7 +35,6 @@ public:
 private:
     const int DESIGN_WIDTH = 540;
     const int DESIGN_HEIGHT = 960;
-    
 };
 
 #endif // _APP_DELEGATE_H_
