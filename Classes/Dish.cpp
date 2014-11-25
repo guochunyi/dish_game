@@ -24,7 +24,7 @@ bool Dish::init()
         return false;
     }
 	setAnchorPoint(Vec2(0.5f, 0.5f));
-    mSpeed = Point(-300.f, 0.f);
+    mSpeed = Point(-100.f, 0.f);
     this->scheduleUpdate();
 	sprite = Sprite::create(dishes[(int)DishType::empty]);
 	this->addChild(sprite);

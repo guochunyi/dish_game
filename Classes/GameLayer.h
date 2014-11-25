@@ -7,6 +7,15 @@
 class Dish;
 class GameLayer : public cocos2d::Layer, public SingleInstance<GameLayer>
 {
+protected:
+    //タグ
+    enum class State
+    {
+        GameStart,
+        Gaming,
+        GameOver,
+    };
+    
 public:
     static cocos2d::Scene* createScene();
 
@@ -26,6 +35,7 @@ private:
     enum kZOrder
     {
         kZOrderBackground = 0,
+        kZORderStartbutton,
         kZOrderDish,
         kZOrderMenu,
     };

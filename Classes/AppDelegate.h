@@ -1,6 +1,7 @@
 #ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
 
+#include "SimpleAudioEngine.h"
 #include "cocos2d.h"
 
 /**
@@ -8,6 +9,7 @@
 
 The reason for implement as private inheritance is to hide some interface call by Director.
 */
+using namespace CocosDenshion;
 class  AppDelegate : private cocos2d::Application
 {
 public:
