@@ -24,11 +24,14 @@ bool Dish::init()
         return false;
     }
 	setAnchorPoint(Vec2(0.5f, 0.5f));
-    mSpeed = Point(-100.f, 0.f);
+    mSpeed = Point(-200.f, 0.f);
     this->scheduleUpdate();
 	sprite = Sprite::create(dishes[(int)DishType::empty]);
 	this->addChild(sprite);
 	type = DishType::empty;
+	minX = -50;
+	maxX = Director::getInstance()->getWinSize().width + 50;
+	maxY = 650;
 /*	sprites[(int) DishType::empty] = "c_01.png";
 	sprites[(int) DishType::curry] = "c_04.png";
 	sprites[(int) DishType::singleRice] = "c_02.png";
@@ -46,17 +49,16 @@ void Dish::update(float delta)
 
 void Dish::handleDish()
 {
-    // TODO: 位置を判断する
     Point point = this->getPosition();
-    this->setAnchorPoint(Point(1, 0));
-    if(point.x < -20 || point.x > Director::getInstance()->getWinSize().width + 100)
+    if(point.x < minX || point.x > maxX)
     {
-        this->setPosition(this->getPosition() + Point(0.f, 80.0f));
-        if(point.y > Director::getInstance()->getWinSize().height * 0.65f)
+        this->setPositionY(this->getPositionY() + 80.0f);
+        if(point.y > maxY)
         {
             GameLayer::getInstance()->endGame();
         };
         mSpeed = -mSpeed;
+		this->setPositionX(mSpeed.x > 0 ? minX : maxX);
     }
 }
 
@@ -100,6 +102,7 @@ void Dish::putFood(Food *food)
 		else
 		{
 			changeType(DishType::curry);
+			GameLayer::getInstance()->endGame();
 		}
 		break;
 	case::DishType::singleRice:
@@ -110,17 +113,32 @@ void Dish::putFood(Food *food)
 		else
 		{
 			changeType(DishType::currySingleRice);
+			disappear();
 		}
 		break;
 	case::DishType::doubleRice:
 		if (food->type == FoodType::typeRice)
 		{
-			break;
+			GameLayer::getInstance()->endGame();
 		}
 		else
 		{
 			changeType(DishType::curryDoubleRice);
+			disappear();
 		}
 		break;
 	}
+}
+
+void Dish::disappear()
+{
+	CCActionInterval* action = FadeOut::create(1);
+	this->runAction(
+		Sequence::create(action, CallFunc::create([this]()
+		{
+			this->pause();
+			GameLayer::getInstance()->dishList.remove(this);
+			this->getParent()->removeChild(this);
+		}), nullptr)
+	);
 }

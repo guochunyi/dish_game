@@ -34,7 +34,9 @@ public:
 	bool checkHit(Food *food, float delta) const;
 	void putFood(Food *food);
 	void changeType(DishType targetType);
+	void disappear();
 private:
+	float minX, maxX, maxY;
     cocos2d::Point mSpeed;
 	static std::array<std::string, 6> dishes;
 	cocos2d::Sprite *sprite;
