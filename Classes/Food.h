@@ -19,7 +19,7 @@ enum class FoodType : int {
 
 class Food : public cocos2d::Node
 {
-	const float SPEED = 600.f;
+	const float SPEED = 1200.f;
 public:
 	Food(FoodType type);
     virtual bool init();

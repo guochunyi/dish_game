@@ -33,6 +33,7 @@ bool Food::init()
 	sprite->setAnchorPoint(Vec2(0.5f, 0.5f));
 	this->addChild(sprite);
     this->scheduleUpdate();
+	this->setCascadeOpacityEnabled(true);
 	return true;
 }
 

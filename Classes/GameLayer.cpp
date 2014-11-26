@@ -41,8 +41,7 @@ bool GameLayer::init()
     this->addChild(startButton, kZORderStartbutton);
     this->addChild(backgroundImage, kZOrderBackground);
     
-    //1秒かけてフェードアーウト
-    CCActionInterval* action = CCFadeOut::create(3);
+    CCActionInterval* action = FadeOut::create(3);
     startButton->runAction(action);
     this->removeChild(startButton);
     
