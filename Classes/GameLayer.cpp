@@ -28,11 +28,30 @@ bool GameLayer::init()
         return false;
     }
     
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music.mp3",true);
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
     
-    this->schedule(schedule_selector(GameLayer::createDish), 1);
+    auto backgroundImage = Sprite::create("c_19.png");
+    auto startButton = Sprite::create("c_20.png");
+    startButton->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
+    backgroundImage->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
+    backgroundImage->setScale(1.34, 1.2);
+    this->addChild(startButton, kZORderStartbutton);
+    this->addChild(backgroundImage, kZOrderBackground);
+    
+    //1秒かけてフェードアーウト
+    CCActionInterval* action = CCFadeOut::create(3);
+    startButton->runAction(action);
+    this->removeChild(startButton);
+    
+    //game start
+    auto listenerStart = EventListenerTouchAllAtOnce::create();
+    listenerStart->onTouchesBegan = CC_CALLBACK_2(GameLayer::onTouchesBegan,this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listenerStart, this);
+    
+    this->schedule(schedule_selector(GameLayer::createDish), 3);
 
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
@@ -51,11 +70,6 @@ bool GameLayer::init()
     auto menu = Menu::create(closeItem, NULL);
     menu->setPosition(Point::ZERO);
     this->addChild(menu, 1);
-    
-    auto backgroundImage = Sprite::create("c_19.png");
-    backgroundImage->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
-    backgroundImage->setScale(1.34, 1.2);
-    this->addChild(backgroundImage, kZOrderBackground);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	static int nextFood = 0;
@@ -101,5 +115,13 @@ void GameLayer::endGame()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     auto endTest = Sprite::create("c_21.png");
     endTest->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
+    //stop the schedules
     this->addChild(endTest, 200000);
+    
+    for (Dish* dish : this->dishList)
+    {
+        dish->pause();
+    }
+    this->pause();
+    
 }
