@@ -1,28 +1,19 @@
 #include "GameLayer.h"
 #include "Dish.h"
 #include "Food.h"
+#include "Hint.h"
 USING_NS_CC;
 
 Scene* GameLayer::createScene()
 {
-    // 'scene' is an autorelease object
     auto scene = Scene::create();
-    
-    // 'layer' is an autorelease object
     auto layer = GameLayer::create();
-    
-    // add layer as a child to scene
     scene->addChild(layer);
-
-    // return the scene
     return scene;
 }
 
-// on "init" you need to initialize your instance
 bool GameLayer::init()
 {
-    //////////////////////////////
-    // 1. super init first
     if ( !Layer::init() )
     {
         return false;
@@ -44,14 +35,26 @@ bool GameLayer::init()
     CCActionInterval* action = FadeOut::create(3);
     startButton->runAction(action);
     this->removeChild(startButton);
-    
+	std::random_device seed;
+	randEngine = std::mt19937(seed());
+	nextHint = Create<Hint>(static_cast<FoodType>(randEngine() & 1));
+	nextHint->setAnchorPoint(Vec2(0.5f, 0.5f));
+	nextHint->setPosition(Vec2(60, visibleSize.height - 100));
+	this->addChild(nextHint);
+	scoreText = LabelBMFont::create("0", "fonts/digital.fnt");
+	this->addChild(scoreText);
+	scoreText->setPosition(Vec2(visibleSize.width / 2, visibleSize.height - 100));
+	scoreText->setScale(0.8f);
+	score = 0;
+	showScore = 0;
+
     //game start
     auto listenerStart = EventListenerTouchAllAtOnce::create();
     listenerStart->onTouchesBegan = CC_CALLBACK_2(GameLayer::onTouchesBegan,this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listenerStart, this);
     
     this->schedule(schedule_selector(GameLayer::createDish), 3);
-
+	this->scheduleUpdate();
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
@@ -71,12 +74,12 @@ bool GameLayer::init()
     this->addChild(menu, 1);
 
 	auto listener = EventListenerTouchOneByOne::create();
-	static int nextFood = 0;
 	listener->onTouchBegan = [this](Touch *touch, Event *event) {
 		Vec2 location = touch->getLocation();
-		Food* food = Create<Food>((FoodType)((++nextFood)&1));
+		Food* food = Create<Food>(nextHint->getType());
 		food->setPosition(Vec2(location.x, 960));
 		this->addChild(food);
+		nextHint->setHint(static_cast<FoodType>(randEngine() & 1));
 		return true;
 	};
 
@@ -114,7 +117,6 @@ void GameLayer::endGame()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     auto endTest = Sprite::create("c_21.png");
     endTest->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
-    //stop the schedules
     this->addChild(endTest, 200000);
     
     for (Dish* dish : this->dishList)
@@ -123,4 +125,23 @@ void GameLayer::endGame()
     }
     this->pause();
     
+}
+
+void GameLayer::addScore(int _score)
+{
+	score += _score;
+	//scoreText->setString(to_string(score));
+}
+
+void GameLayer::update(float delta)
+{
+	if (showScore < score)
+	{
+		showScore += 17;
+		if (showScore > score)
+		{
+			showScore = score;
+		}
+		scoreText->setString(to_string(showScore));
+	}
 }

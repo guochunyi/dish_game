@@ -1,13 +1,5 @@
-//
-//  Dish.h
-//  MyGame
-//
-//  Created by guo chunyi on 2014/11/22.
-//
-//
-
-#ifndef __MyGame__Dish__
-#define __MyGame__Dish__
+#ifndef __DISH_H__
+#define __DISH_H__
 
 #include "cocos2d.h"
 #include <array>
@@ -41,6 +33,7 @@ private:
 	static std::array<std::string, 6> dishes;
 	cocos2d::Sprite *sprite;
 	DishType type;
+	bool isLive;
 };
 
-#endif /* defined(__MyGame__Dish__) */
+#endif /* defined(__DISH_H__) */
