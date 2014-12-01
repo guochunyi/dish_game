@@ -1,11 +1,3 @@
-//
-//  DishSprite.cpp
-//  MyGame
-//
-//  Created by guo chunyi on 2014/11/22.
-//
-//
-
 #include "GameLayer.h"
 
 #include "Dish.h"
@@ -23,6 +15,7 @@ bool Dish::init()
     {
         return false;
     }
+	isLive = true;
 	setAnchorPoint(Vec2(0.5f, 0.5f));
     mSpeed = Point(-200.f, 0.f);
     this->scheduleUpdate();
@@ -32,6 +25,7 @@ bool Dish::init()
 	minX = -50;
 	maxX = Director::getInstance()->getWinSize().width + 50;
 	maxY = 650;
+	setCascadeOpacityEnabled(true);
 /*	sprites[(int) DishType::empty] = "c_01.png";
 	sprites[(int) DishType::curry] = "c_04.png";
 	sprites[(int) DishType::singleRice] = "c_02.png";
@@ -53,7 +47,7 @@ void Dish::handleDish()
     if(point.x < minX || point.x > maxX)
     {
         this->setPositionY(this->getPositionY() + 80.0f);
-        if(point.y > maxY)
+        if(isLive && point.y > maxY)
         {
             GameLayer::getInstance()->endGame();
         };
@@ -113,6 +107,7 @@ void Dish::putFood(Food *food)
 		else
 		{
 			changeType(DishType::currySingleRice);
+			GameLayer::getInstance()->addScore(100);
 			disappear();
 		}
 		break;
@@ -124,6 +119,7 @@ void Dish::putFood(Food *food)
 		else
 		{
 			changeType(DishType::curryDoubleRice);
+			GameLayer::getInstance()->addScore(200);
 			disappear();
 		}
 		break;
@@ -132,12 +128,13 @@ void Dish::putFood(Food *food)
 
 void Dish::disappear()
 {
-	CCActionInterval* action = FadeOut::create(1);
+	isLive = false;
+	CCActionInterval* action = FadeOut::create(0.5);
+	GameLayer::getInstance()->dishList.remove(this);
 	this->runAction(
 		Sequence::create(action, CallFunc::create([this]()
 		{
 			this->pause();
-			GameLayer::getInstance()->dishList.remove(this);
 			this->getParent()->removeChild(this);
 		}), nullptr)
 	);

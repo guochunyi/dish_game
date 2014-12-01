@@ -1,13 +1,5 @@
-//
-//  Food.h
-//  MyGame
-//
-//  Created by guo chunyi on 2014/11/23.
-//
-//
-
-#ifndef __MyGame__Food__
-#define __MyGame__Food__
+#ifndef __FOOD_H__
+#define __FOOD_H__
 
 #include "cocos2d.h"
 #include <iostream>
@@ -31,4 +23,4 @@ private:
 	cocos2d::Sprite *sprite;
 };
 
-#endif /* defined(__MyGame__Food__) */
+#endif /* defined(__FOOD_H__) */
